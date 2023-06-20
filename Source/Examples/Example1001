@@ -1,0 +1,40 @@
+{
+  "INFORMATION":
+  [
+    [ "Version", "3.0.0" ],
+    [ "Date", "20220331" ],
+    [ "Description", "This example is provided for testing ML"]
+  ],
+  "MATERIAL": [
+    [ 1, 210000000, 80770000, 0 , 0 ]
+  ],
+  "SECTION": [
+    [ 1, 1, 2, 0.004462, 3.394e-6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0 ]
+  ],
+  "NODE": [
+    [ 1, 0, 0, 0 ],
+    [ 2, 3.0, 0, 0 ]
+  ],
+  "MEMBER": [
+    [ 1, 1, 1, 2, 0, 0.001 ]
+  ],
+  "BOUNDARY": [
+    [ 1, 1, 1, 1, 1, 0, 0 ],
+    [ 2, 0, 1, 1, 0, 0, 0 ]
+  ],
+  "JOINTLOAD": [
+    [ 1, 0, 0, 0, 0, 0, 1, 0, 0 ],
+    [ 2, 0, 0, 0, 0, 0, -1, 0, 0 ]
+  ],
+  "MEMBERUDL": [
+    [ 1, 0, 0, 0, 0, 0, 0 ]
+  ],
+  "ANALYSIS": [
+    [ "UseTransferLearning", "Y" ],
+    [ "num_sample", 50 ],
+    [ "num_epochs", 50000 ],
+    [ "TOL", 1E-9 ],
+    [ "target_LF", 1 ],
+    [ "load_step", 100 ]
+  ]
+}

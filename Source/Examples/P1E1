@@ -1,0 +1,39 @@
+{
+  "INFORMATION":
+  [
+    [ "Version", "3.0.0" ],
+    [ "Date", "20220331" ],
+    [ "Description", "This example is the Example 1 of PINN-Beam-Column paper"]
+  ],
+  "MATERIAL": [
+    [ 1, 1, 1, 0, 0 ]
+  ],
+  "SECTION": [
+    [ 1, 1, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+  ],
+  "NODE": [
+    [ 1, 0, 0, 0 ],
+    [ 2, 4.0, 0, 0 ]
+  ],
+  "MEMBER": [
+    [ 1, 1, 1, 2, 0, 0 ]
+  ],
+  "BOUNDARY": [
+    [ 1, 1, 1, 1, 1, 1, 1 ],
+    [ 2, 0, 0, 0, 0, 0, 0 ]
+  ],
+  "JOINTLOAD": [
+    [ 2, 0, 0, 0, 0, 0, 3.1415926, 0, 0 ]
+  ],
+  "MEMBERUDL": [
+    [ 1, 0, 0, 0, 0, 0, 0 ]
+  ],
+  "ANALYSIS": [
+    [ "UseTransferLearning", "Y" ],
+    [ "num_sample", 200 ],
+    [ "num_epochs", 50000 ],
+    [ "TOL", 1E-3 ],
+    [ "target_LF", 1 ],
+    [ "load_step", 10 ]
+  ]
+}
