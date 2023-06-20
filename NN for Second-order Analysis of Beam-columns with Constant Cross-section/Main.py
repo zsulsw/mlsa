@@ -14,7 +14,7 @@ import timeit, sys, logging, os
 from Source.Variables import Model
 from Source.Utils.PrintLog import PrintLog as pl
 from Source.File import ReadData
-from Source.NeuralNetwork import NNforBeamColumn
+from Source.NeuralNetwork import BeamColumn
 # =========================================================================================
 ProgrameName = " MLSA - Machine Learning-based Structural Analysis Module(v1.0.0) "
 DeveloperName = " Developed by MLSA Team "

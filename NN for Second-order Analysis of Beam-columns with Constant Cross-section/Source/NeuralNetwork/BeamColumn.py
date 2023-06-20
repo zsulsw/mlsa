@@ -12,40 +12,6 @@ from Source.Training.Train import train_model
 from Source.File import ReadData
 import matplotlib
 
-
-def pre_train():
-    path = os.getcwd()
-    file_folder = path + "\\Examples\\pre-train_file\\"
-    res_folder = path + "\\Examples\\pre-train.rst"
-    conf_file = path + "\\Examples\\pre-train.rst\\pre-train.config"
-    tar_file = path + "\\Examples\\pre-train.rst\\pre-train.tar"
-    file_list = [f for f in os.listdir(file_folder) if os.path.isfile(os.path.join(file_folder, f))]
-    matplotlib.use('TkAgg')
-    for i in range(1, 11):
-        for j in file_list:
-            print("\nLoad Step: {}\n".format(i))
-            Model.reset_all()
-            ReadData.modelfromJSON(FileName=path + "\\Examples\\pre-train_file\\" + j)
-            Model.initialize()
-            if os.path.exists(conf_file) and os.path.exists(tar_file):
-                model = load_model(res_folder, 'pre-train')
-            else:
-                model = BaseNetwork(act_fn=[torch.nn.Tanhshrink(), torch.nn.Tanh(), torch.nn.Tanhshrink()],
-                                input_size=1, output_size=2, hidden_sizes=[200, 200, 200])
-            model.train()
-            opt = torch.optim.Adam(params=model.parameters(), betas=(0.9, 0.999))
-            loss = nn.MSELoss()
-            num_epochs = int(Model.Analysis.num_epochs)
-            num_sample = Model.Analysis.num_sample
-            tol = 0.01 * i ** 2 * Model.Analysis.TOL
-            target_LF = Model.Analysis.target_LF
-            load_factor = 0.1 * i * target_LF
-            # Training loop
-            desc = "start training..."
-            pbar = tqdm(range(num_epochs), desc=desc)
-            train_model(model, res_folder, 'pre-train', load_factor, num_sample, tol, loss, opt, pbar)
-
-
 def Run():
     matplotlib.use('TkAgg')
     res_folder = Model.OutResult.Folder + Model.OutResult.ModelName + ".rst"

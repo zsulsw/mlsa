@@ -3,15 +3,6 @@ import numpy as np
 from Source.Utils.MathTools import gradients
 
 
-def force_eq(s, Delta, Theta, loss, E, A, I, L, P1, Fy1, Vyq, LF, Impf):
-    P = LF * P1 * torch.cos(Theta + np.pi * Impf * torch.cos(np.pi * s)) - Fy1 * torch.sin(Theta + np.pi * Impf * torch.cos(np.pi * s)) + Vyq * torch.sin(Theta)
-    V = -LF * P1 * torch.sin(Theta + np.pi * Impf * torch.cos(np.pi * s)) - Fy1 * torch.cos(Theta + np.pi * Impf * torch.cos(np.pi * s)) + Vyq * torch.cos(Theta)
-    # =================================================
-    return(loss(gradients(Delta, s, 1), torch.ones_like(s) * P * L / (E * A)),
-           loss(gradients(Theta, s, 2), torch.ones_like(s) * V * L ** 2 / (E * I)),
-           P, V)
-
-
 def ux_i(Delta, loss, bc, device):
     return bc * loss(Delta[0], torch.zeros(1, 1, device=device))
 

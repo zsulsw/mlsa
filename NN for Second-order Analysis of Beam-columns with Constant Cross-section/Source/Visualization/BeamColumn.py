@@ -17,6 +17,7 @@ def start_train():
     fig = plt.figure(figsize=(8, 10))
     return fig
 
+
 def process(fig, s, Delta, Theta, E, A, I, L, P, V, P1, Fy1, M1, Vyq, LF, Impf):
     plt.figure(fig.number)
     plt.clf()
@@ -79,6 +80,7 @@ def process(fig, s, Delta, Theta, E, A, I, L, P, V, P1, Fy1, M1, Vyq, LF, Impf):
     ax6.legend(["Deformation"])
     plt.pause(0.1)
     return max(x), max(y)
+
 
 def end_train(fig):
     plt.figure(fig.number)

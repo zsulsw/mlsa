@@ -1,5 +1,6 @@
 import torch
 
+
 def GetLOSS(LOSS_List, LossWeight):
     LOSS = LossWeight[0] * LOSS_List[0]
     LOSS_value = LOSS_List[0].item()
@@ -7,6 +8,7 @@ def GetLOSS(LOSS_List, LossWeight):
         LOSS = LOSS + LossWeight[ii + 1] * LOSS_List[ii + 1]
         LOSS_value = LOSS_value + LOSS_List[ii + 1].item()
     return LOSS, LOSS_value
+
 
 def UpdateLossWeight(model, LOSS_List, LossWeight, beta=0.9):
     Last_LossWeight = torch.tensor(LossWeight).clone().detach()
@@ -27,22 +29,6 @@ def UpdateLossWeight(model, LOSS_List, LossWeight, beta=0.9):
         return Last_LossWeight
     return torch.clamp(torch.tensor(LossWeight), max=100, min=1)
 
-def UpdateLossWeight1(model, LOSS_List, LossWeight, beta=0.9):
-    LossWeight = torch.tensor(LossWeight)
-    tLossWeight = []
-    for ii in range(len(LOSS_List)):
-        tLossWeight.append(LOSS_List[ii].item())
-    tLossWeight = torch.tensor(tLossWeight)
-    tLossWeight = tLossWeight / torch.sum(tLossWeight.clone().detach()) * len(LOSS_List)
-    LossWeight = beta * LossWeight + (1-beta) * tLossWeight
-    # L1_Value = LOSS_List[0].item()
-    # for ii in range(len(LossWeight) - 1):
-    #     tL = LOSS_List[ii + 1]
-    #     tL_Value = tL.item()
-    #     tLossWeight = LossWeight[0] / L1_Value * tL_Value
-    #     LossWeight[ii + 1] = beta * LossWeight[ii + 1] + (1-beta) * tLossWeight
-    # LossWeight = LossWeight / torch.sum(LossWeight.clone().detach()) * len(LOSS_List)
-    return LossWeight
 
 def ObtainGrad(model, L, retain_graph=True):
     L.backward(retain_graph=retain_graph)
