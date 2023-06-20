@@ -8,7 +8,9 @@
 # Description:
 # =========================================================================================
 # Import standard libraries
-import timeit, sys, logging, os
+import timeit
+import sys
+import torch
 # =========================================================================================
 # Import internal functions
 from Source.ConstSectBeamCol.Variables import Model

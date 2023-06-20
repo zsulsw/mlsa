@@ -10,7 +10,7 @@ from Source.ConstSectBeamCol.Utils.MathTools import Integration1D, gradients
 
 
 def train_model(model, model_path, model_name, load_factor, num_sample=100, TOL=1E-12, loss=torch.nn.MSELoss, opt=None,
-                pbar=None, f=None):
+                pbar=None):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = model.to(device)
     MinLoss = 1
