@@ -1,6 +1,6 @@
 import torch
 import numpy as np
-from Source import gradients
+from Source.ConstSectBeamCol.Utils.MathTools import gradients
 
 
 def force_eq(s, Delta, Theta, loss, E, A, I, L, P1, Fy1, Vyq, LF, Impf):
@@ -8,5 +8,4 @@ def force_eq(s, Delta, Theta, loss, E, A, I, L, P1, Fy1, Vyq, LF, Impf):
     V = -LF * P1 * torch.sin(Theta + np.pi * Impf * torch.cos(np.pi * s)) - Fy1 * torch.cos(Theta + np.pi * Impf * torch.cos(np.pi * s)) + Vyq * torch.cos(Theta)
     # =================================================
     return(loss(gradients(Delta, s, 1), torch.ones_like(s) * P * L / (E * A)),
-           loss(gradients(Theta, s, 2), torch.ones_like(s) * V * L ** 2 / (E * I)),
-           P, V)
+           loss(gradients(Theta, s, 2), torch.ones_like(s) * V * L ** 2 / (E * I)), P, V)

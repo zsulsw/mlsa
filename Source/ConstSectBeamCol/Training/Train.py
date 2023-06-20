@@ -1,11 +1,12 @@
 import torch
 import numpy as np
-from Source.LossFunction.BC import force_eq, ux_i, ux_j, uy_j, rz_i, rz_j
-from Source.Utils import AdaoptiveLossWeight
-from Source.File.IO import save_model
-from Source.Visualization.BeamColumn import start_train, process, end_train
-from Source.Variables import Model
-from Source.Utils.MathTools import Integration1D, gradients
+from Source.ConstSectBeamCol.LossFunction.ForceEquilibrium import force_eq
+from Source.ConstSectBeamCol.LossFunction.BoundaryConditions import ux_i, ux_j, uy_j, rz_i, rz_j
+from Source.ConstSectBeamCol.Utils import AdaoptiveLossWeight
+from Source.ConstSectBeamCol.File.IO import save_model
+from Source.ConstSectBeamCol.Visualization.BeamColumn import start_train, process, end_train
+from Source.ConstSectBeamCol.Variables import Model
+from Source.ConstSectBeamCol.Utils.MathTools import Integration1D, gradients
 
 
 def train_model(model, model_path, model_name, load_factor, num_sample=100, TOL=1E-12, loss=torch.nn.MSELoss, opt=None,
@@ -15,8 +16,6 @@ def train_model(model, model_path, model_name, load_factor, num_sample=100, TOL=
     MinLoss = 1
     LossWeight = [1, 1, 1, 1, 1, 1, 1]
     fig = start_train()
-    #x_max = 0
-    #y_max = 0
     for epoch in pbar:
         # Place sampling points, S, along the axial length
         s = torch.rand(int(num_sample) - 2, 1).to(device)
@@ -28,7 +27,6 @@ def train_model(model, model_path, model_name, load_factor, num_sample=100, TOL=
         Delta, Theta = res[:, 0], res[:, 1]
         Delta = Delta.unsqueeze(-1)
         Theta = Theta.unsqueeze(-1)
-
         member_id = next(_ for _ in Model.Member.ID)
         E = Model.Material.E[Model.Section.MatID[Model.Member.SectID[member_id]]]
         A = Model.Section.A[Model.Member.SectID[member_id]]
@@ -59,11 +57,10 @@ def train_model(model, model_path, model_name, load_factor, num_sample=100, TOL=
         LossFuncSum = [L1, L2, L3, L4, L5, L6, L7]
         LOSS, LOSS_value = AdaoptiveLossWeight.GetLOSS(LossFuncSum, LossWeight)
         if LOSS_value < TOL:
-            x_max, y_max = process(fig, s, Delta, Theta, E, A, I, L, P, V, P1, Fy1, M1, Vyq, load_factor, Impf)
+            process(fig, s, Delta, Theta, E, A, I, L, P, V, P1, Fy1, M1, Vyq, load_factor, Impf)
         if epoch % 1000 == 0 or (epoch % 500 == 0 and epoch <= 1000):
-            x_max, y_max = process(fig, s, Delta, Theta, E, A, I, L, P, V, P1, Fy1, M1, Vyq, load_factor, Impf)
+            process(fig, s, Delta, Theta, E, A, I, L, P, V, P1, Fy1, M1, Vyq, load_factor, Impf)
         if epoch % 20 == 0 and epoch > 10:
-            # LossWeight = AdaoptiveLossWeight.UpdateLossWeight(model, LossFuncSum, LossWeight)
             print("LossWeight:", LossWeight)
             print([L1.item(), L2.item(), L3.item(), L4.item(), L5.item(), L6.item(), L7.item()])
             opt.zero_grad()
@@ -75,14 +72,9 @@ def train_model(model, model_path, model_name, load_factor, num_sample=100, TOL=
         if epoch % 100 == 0 and epoch != 0 and LOSS_value <= MinLoss:
             save_model(model, model_path, model_name)
         if LOSS_value < TOL:
-            #f.write("Epoch: {}\n".format(epoch))
             break
         pbar.set_description("Loss %s" % LOSS.item())
-
     end_train(fig)
-
     print("Current loss value:", LOSS.item())
     save_model(model, model_path, model_name)
     model.eval()
-    #f.write("x_max: {}\n".format(x_max))
-    #f.write("y_max: {}\n".format(y_max))

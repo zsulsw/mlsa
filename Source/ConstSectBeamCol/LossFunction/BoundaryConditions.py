@@ -1,5 +1,5 @@
 import torch
-from Source import gradients
+from Source.ConstSectBeamCol.Utils.MathTools import gradients
 
 
 def ux_i(Delta, loss, bc, device):
@@ -8,6 +8,7 @@ def ux_i(Delta, loss, bc, device):
 
 def ux_j(x1, loss, bc, device):
     return bc * loss(x1, torch.zeros(1, 1, device=device))
+
 
 def uy_j(y1, loss, bc, device):
     return bc * loss(y1, torch.zeros(1, 1, device=device))

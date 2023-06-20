@@ -1,29 +1,15 @@
 #############################################################################
 # MLSA - Machine Learning-based Structural Analysis
-
 #############################################################################
-# Description:
 # ===========================================================================
 # Import standard libraries
-#from itertools import zip  # For establishing dictionary
 import numpy as np
-import math
 # ===========================================================================
-# Import internal functions
-#from util import Transformation, GaussPoint
 
 
-# ===========================================================================
 def initialize():
     # Member Geometry
     Member.Initialize(Member.Count)
-    # Initialize member length & member matrix L
-    #for ii in Member.ID:
-    #    Member.MemLenUpdate(Member, Node, ii)
-    #    Member.MemMtxLUpdate(Member, Node, ii)
-    # MemGeometry.update(model.Member,model.Node)
-    # External force vector
-    #Node.NodeFgUpdate(Node)
     return
 
 
@@ -32,10 +18,6 @@ class Information:
     EDate = " "
     Description = " "
 
-    # def __init__(self):
-    #     self.Version = " "
-    #     self.EDate = " "
-    #     self.Description = " "
     @classmethod
     def reset(cls):
         cls.Version = " "
@@ -47,6 +29,7 @@ class Information:
         Information.EDate = ModelGenlInfo[1, 1]
         Information.Description = ModelGenlInfo[2, 1]
         return
+
 
 class Node:
     Count = 0
@@ -135,7 +118,6 @@ class Node:
         return
 
 
-# --------------------------------------------------------------------------
 class Member:
     Count = 0
     ID = []
@@ -198,7 +180,6 @@ class Member:
         Member.EleMtxL = np.zeros((Member.Count * 3, 3))
         Member.EleMtxL0 = np.zeros((Member.Count * 3, 3))
         Member.EleMtxK = np.zeros((Member.Count * 14, 14))
-        # [x, y, z, Torsion(thx)]
         # Initialize member length
         for ii in Member.ID:
             tI = Member.I[ii]
@@ -224,8 +205,6 @@ class Member:
         return
 
 
-
-# --------------------------------------------------------------------------
 class Material:
     Count = 0
     ID = []
@@ -250,11 +229,9 @@ class Material:
         Material.G = dict(zip(MatInfo[:, 0], MatInfo[:, 2]))
         Material.Fy = dict(zip(MatInfo[:, 0], MatInfo[:, 3]))
         Material.Dens = dict(zip(MatInfo[:, 0], MatInfo[:, 4]))
-        # ...... for Density & Coefficient of Themal Expansion and so on
         return
 
 
-# --------------------------------------------------------------------------
 class Section:
     Count = 0
     ID = []
@@ -292,9 +269,6 @@ class Section:
         cls.betaz = {}
         cls.betaw = {}
 
-    ## To be added
-    ## -----------
-
     # Read Section Dimensions Information
     def ReadSect(SectInfo):
         Section.Count = len(SectInfo)
@@ -316,7 +290,6 @@ class Section:
         return
 
 
-# --------------------------------------------------------------------------
 class Boundary:
     Count = 0
     NodeID = []
@@ -406,11 +379,7 @@ class Coupling:
         Coupling.RZ = dict(enumerate(tRZ))
         return
 
-# --------------------------------------------------------------------------
 
-
-
-# --------------------------------------------------------------------------
 class JointLoad:
     Count = 0
     NodeID = []
@@ -450,7 +419,7 @@ class JointLoad:
         JointLoad.Zp = dict(zip(JNTLInfo[:, 0], JNTLInfo[:, 8]))
         return
 
-# --------------------------------------------------------------------------
+
 class MemberUDL:
     Count = 0
     MemberID = []
@@ -484,10 +453,7 @@ class MemberUDL:
         MemberUDL.QZ2 = dict(zip(MUDLInfo[:, 0], MUDLInfo[:, 6]))
         return
 
-# --------------------------------------------------------------------------
 
-
-# --------------------------------------------------------------------------
 class Analysis:
     UseTransferLearning = ""
     num_sample = 0.0
@@ -505,7 +471,6 @@ class Analysis:
         cls.target_LF = 0.0
         cls.load_step = 0.0
 
-
     # Read Analysis Information
     def ReadAna(tAanalInfo):
         # print("tAanalInfo = ", tAanalInfo)
@@ -518,10 +483,6 @@ class Analysis:
         Analysis.load_step = float(AnalInfo.get('load_step', 10))
 
 
-
-# --------------------------------------------------------------------------
-
-# --------------------------------------------------------------------------
 class OutResult:
     FileName = ""
     Folder = ""
@@ -532,6 +493,7 @@ class OutResult:
         cls.FileName = ""
         cls.Folder = ""
         cls.ModelName = ""
+
 
 def reset_all():
     Information.reset()

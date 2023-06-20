@@ -1,7 +1,7 @@
 import torch
 import numpy as np
 from matplotlib import pyplot as plt
-from Source import gradients, Integration1D
+from Source.ConstSectBeamCol.Utils.MathTools import gradients, Integration1D
 
 
 def start_train():
@@ -30,8 +30,6 @@ def process(fig, s, Delta, Theta, E, A, I, L, P, V, P1, Fy1, M1, Vyq, LF, Impf):
     for i in range(len(s)):
         x[i] = Integration1D(L * torch.cos(Theta + np.pi * Impf * torch.cos(np.pi * s)) - torch.cos(Theta + np.pi * Impf * torch.cos(np.pi * s)) * gradients(Delta, s, 1), s, 0, s[i])
         y[i] = Integration1D(L * torch.sin(Theta + np.pi * Impf * torch.cos(np.pi * s)) - torch.sin(Theta + np.pi * Impf * torch.cos(np.pi * s)) * gradients(Delta, s, 1), s, 0, s[i])
-        #x[i] = Integration1D(L * torch.cos(Theta) - torch.cos(Theta) * gradients(Delta, s, 1), s, 0, s[i])
-        #y[i] = Integration1D(L * torch.sin(Theta) - torch.sin(Theta) * gradients(Delta, s, 1), s, 0, s[i])
     for i in range(len(s)):
         Mq[i] = Integration1D(-Vyq, x, 0, x[-1]) - Integration1D(-Vyq, x, 0, x[i])
     M = Mq - (LF * P1 * y - Fy1 * (x[-1] - x)) + LF * M1
@@ -79,7 +77,6 @@ def process(fig, s, Delta, Theta, E, A, I, L, P, V, P1, Fy1, M1, Vyq, LF, Impf):
     ax6.plot(x, y)
     ax6.legend(["Deformation"])
     plt.pause(0.1)
-    return max(x), max(y)
 
 
 def end_train(fig):

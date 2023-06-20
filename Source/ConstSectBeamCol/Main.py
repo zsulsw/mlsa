@@ -11,15 +11,17 @@
 import timeit, sys, logging, os
 # =========================================================================================
 # Import internal functions
-from Source.Variables import Model
-from Source.Utils.PrintLog import PrintLog as pl
-from Source.File import ReadData
-from Source.NeuralNetwork import BeamColumn
+from Source.ConstSectBeamCol.Variables import Model
+from Source.ConstSectBeamCol.Utils.PrintLog import PrintLog as pl
+from Source.ConstSectBeamCol.File import ReadData
+from Source.ConstSectBeamCol.NeuralNetwork import BeamColumn
 # =========================================================================================
 ProgrameName = " MLSA - Machine Learning-based Structural Analysis Module(v1.0.0) "
 DeveloperName = " Developed by MLSA Team "
 RevisedDate = " Last Revised: May. 21, 2023 "
 # =========================================================================================
+
+
 def Run(argv=''):
     # ----------------------------------------------------------------
     # Initializing
@@ -27,27 +29,23 @@ def Run(argv=''):
     ReadData.modelfromJSON(FileName=argv)
     Model.initialize()
     pl().Initialize(Model.OutResult.FileName, Model.OutResult.ModelName)
-    # logging Logo
     pl.Print(pl.StartMessage(ProgrameName, DeveloperName, RevisedDate))
 
-    #if argv =="":
     # Start Timer
     StartTime = timeit.default_timer()
     # ----------------------------------------------------------------
-    # Run Analysis
-    # Solver(model).run()
+    # Start Analysis
     # ----------------------------------------------------------------
-    # Initializing
-    # ----------------------------------------------------------------
-    NNforBeamColumn.Run()
+    BeamColumn.Run()
     pl.Print(pl().ShowRuntime(StartTime))
     # ----------------------------------------------------------------
-    # Analysis is completed
+    # Analysis Complete
     # ----------------------------------------------------------------
 
 # =========================================================================================
+
+
 if __name__ == '__main__':
-    # Initialize the analysis model
     try:
         Run(sys.argv[1])
     except:

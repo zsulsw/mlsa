@@ -1,15 +1,11 @@
 #############################################################################
 # MLSA - Machine Learning-based Structural Analysis
-
 #############################################################################
-# Description:
 # ===========================================================================
 # Import standard libraries
-#import numpy as np
-#import math
-import timeit, sys, logging, os
-# Import internal functions
+import timeit, logging, os
 # =========================================================================================
+
 
 class PrintLog:
     @staticmethod

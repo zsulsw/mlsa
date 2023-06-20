@@ -1,5 +1,7 @@
-import os, torch, json
-from Source import BaseNetwork
+import os
+import torch
+import json
+from Source.ConstSectBeamCol.NeuralNetwork.BaseModel import BaseNetwork
 
 
 act_fn_by_name = {
@@ -9,15 +11,17 @@ act_fn_by_name = {
     "Softplus": torch.nn.Softplus,
     "Sigmoid": torch.nn.Sigmoid
 }
-########################################
+
+
 def _get_config_file(model_path, model_name):
     # Name of the file for storing hyperparameter details
     return os.path.join(model_path, model_name + ".config")
 
+
 def _get_model_file(model_path, model_name):
     # Name of the file for storing network parameters
     return os.path.join(model_path, model_name + ".tar")
-#########################################
+
 
 def load_model(model_path, model_name, net=None):
     """
@@ -39,6 +43,7 @@ def load_model(model_path, model_name, net=None):
         net = BaseNetwork(act_fn=act_fu, **config_dict)
     net.load_state_dict(torch.load(model_file))
     return net
+
 
 def save_model(model, model_path, model_name):
     """

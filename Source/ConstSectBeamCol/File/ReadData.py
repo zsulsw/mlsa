@@ -1,19 +1,18 @@
 #############################################################################
 # MLSA - Machine Learning-based Structural Analysis
-
 #############################################################################
-# Description:
 # ===========================================================================
 # Import standard libraries
 import numpy as np
 import os
 from os import listdir
 from os.path import isfile, join
-import json  # JSON Library for handling input and output
+import json
 
 # =========================================================================================
 # Import internal functions
-from Source import Model
+from Source.ConstSectBeamCol.Variables import Model
+
 
 def Getfilename():
     print("The following files are found. Please enter a file name to execute:")
@@ -26,13 +25,13 @@ def Getfilename():
         print("File is not found, please enter the file name from the list")
         FileName = input(">>")
     Model.OutResult.ModelName = FileName
-    #DbDir = os.getcwd() + '\\examples\\'
     OutFolder = os.path.join(JSONScript, FileName + '.rst')
     if not os.path.exists(OutFolder):
         os.makedirs(OutFolder)
-    #Model.OutResult.FileName = JSONScript + FileName
     Model.OutResult.FileName = JSONScript + FileName
     return JSONScript + FileName
+
+
 def Savefileinfo(FileName):
     JSONScript = os.getcwd() + "\\examples\\"
     Model.OutResult.Folder = os.getcwd() + "\\"
@@ -43,11 +42,15 @@ def Savefileinfo(FileName):
     if not os.path.exists(OutFolder):
         os.makedirs(OutFolder)
     Model.OutResult.FileName = JSONScript + FileName
-# Read data file from JSON format,
+
+
+# Read data file from JSON format
 def ReadJSON():
     FileName = Getfilename()
     f = open(FileName, 'r')
     return json.loads(f.read())
+
+
 # Load Data from JSON fomat to Mastan Model
 def LoadDataToModel(DataIn):
     Model.Information.ReadModelGenlInfo(np.array(DataIn["INFORMATION"]))
@@ -64,7 +67,8 @@ def LoadDataToModel(DataIn):
     Model.JointLoad.ReadJNTL(np.array(DataIn["JOINTLOAD"]))
     Model.Analysis.ReadAna(np.array(DataIn["ANALYSIS"]))
     return
-# =========================================================================================
+
+
 def modelfromJSON(FileName=''):
     if FileName == "":
         DataIn = ReadJSON()
@@ -75,9 +79,8 @@ def modelfromJSON(FileName=''):
         DataIn = json.loads(f.read())
     LoadDataToModel(DataIn)
     return
-# =====DataIn==============================================================================
-# The following functions are called by the Mastan GUI
-# =========================================================================================
+
+
 def ReadJSON_GUI(FileName):
     f = open(FileName, 'r')
     return json.loads(f.read())
