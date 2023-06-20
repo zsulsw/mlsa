@@ -1,4 +1,3 @@
-import tqdm
 import torch
 import numpy as np
 from Source.LossFunction.BC import force_eq, ux_i, ux_j, uy_j, rz_i, rz_j

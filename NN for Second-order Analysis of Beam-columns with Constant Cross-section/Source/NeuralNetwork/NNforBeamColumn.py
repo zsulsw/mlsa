@@ -1,8 +1,7 @@
 from test.LSSI.PINN_Model import BaseNetwork
 import timeit
-from test.LSSI import IntegralStratergy as IS, AdaoptiveLossWeight, NetworkSL
 import os
-import torch, math
+import torch
 import torch.nn as nn
 import numpy as np
 import matplotlib.pyplot as plt
