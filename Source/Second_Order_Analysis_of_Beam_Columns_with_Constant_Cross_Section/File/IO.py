@@ -1,5 +1,5 @@
 import os, torch, json
-from Source.Variables.BaseModel import BaseNetwork
+from Source import BaseNetwork
 
 
 act_fn_by_name = {

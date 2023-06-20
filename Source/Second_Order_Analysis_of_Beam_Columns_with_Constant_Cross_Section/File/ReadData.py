@@ -13,7 +13,7 @@ import json  # JSON Library for handling input and output
 
 # =========================================================================================
 # Import internal functions
-from Source.Variables import Model
+from Source import Model
 
 def Getfilename():
     print("The following files are found. Please enter a file name to execute:")

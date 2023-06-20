@@ -1,6 +1,5 @@
 import torch
-import numpy as np
-from Source.Utils.MathTools import gradients
+from Source import gradients
 
 
 def ux_i(Delta, loss, bc, device):
