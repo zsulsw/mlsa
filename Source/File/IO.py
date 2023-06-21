@@ -23,7 +23,7 @@ def _get_model_file(model_path, model_name):
     return os.path.join(model_path, model_name + ".tar")
 
 
-def load_model(model_path, model_name, net=None):
+def load_model(model_path, model_name, net=None, device='cpu'):
     """
     Loads a saved model from disk.
 
@@ -41,7 +41,7 @@ def load_model(model_path, model_name, net=None):
         for ii in act_fn_name:
             act_fu.append(act_fn_by_name[ii]())
         net = BaseNetwork(act_fn=act_fu, **config_dict)
-    net.load_state_dict(torch.load(model_file))
+    net.load_state_dict(torch.load(model_file, map_location=device))
     return net
 
 

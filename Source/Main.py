@@ -9,7 +9,7 @@
 # =========================================================================================
 # Import standard libraries
 import timeit
-import sys
+import torch
 # =========================================================================================
 # Import internal functions
 from Source.Variables import Model
@@ -36,9 +36,13 @@ def Run(argv=''):
     # Start Timer
     StartTime = timeit.default_timer()
     # ----------------------------------------------------------------
+    # Select Device
+    # ----------------------------------------------------------------
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    # ----------------------------------------------------------------
     # Start Analysis
     # ----------------------------------------------------------------
-    BeamColumn.Run()
+    BeamColumn.Run(device)
     pl.Print(pl().ShowRuntime(StartTime))
     # ----------------------------------------------------------------
     # Analysis Complete
@@ -48,10 +52,7 @@ def Run(argv=''):
 
 
 if __name__ == '__main__':
-    try:
-        Run(sys.argv[1])
-    except:
-        Run()
+    Run()
 # =========================================================================================
 # END OF PROGRAM
 # =========================================================================================

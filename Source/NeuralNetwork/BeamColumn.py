@@ -8,11 +8,11 @@ from Source.Training.Train import train_model
 import matplotlib
 
 
-def Run():
+def Run(device):
     matplotlib.use('TkAgg')
     res_folder = Model.OutResult.Folder + Model.OutResult.ModelName + ".rst"
     path = os.getcwd()
-    model = load_model(path + "\\NeuralNetwork\\" + Model.Analysis.SelectNN, Model.Analysis.SelectNN)
+    model = load_model(path + "\\NeuralNetwork\\" + Model.Analysis.SelectNN, Model.Analysis.SelectNN, None, device)
     model.train()
 
     opt = torch.optim.Adam(params=model.parameters(), betas=(0.9, 0.999))
@@ -27,4 +27,4 @@ def Run():
 
     load_factor = 1
     tol = Model.Analysis.TOL
-    train_model(model, res_folder, Model.OutResult.ModelName, load_factor, num_sample, tol, loss, opt, pbar)
+    train_model(model, res_folder, Model.OutResult.ModelName, load_factor, num_sample, tol, loss, opt, pbar, device)
