@@ -405,7 +405,6 @@ class JointLoad:
         cls.Yp = {}
         cls.Zp = {}
 
-
     def ReadJNTL(JNTLInfo):
         JointLoad.Count = len(JNTLInfo)
         JointLoad.NodeID = dict(zip(JNTLInfo[:, 0], np.arange(JointLoad.Count)))
@@ -441,7 +440,6 @@ class MemberUDL:
         cls.QY2 = {}
         cls.QZ2 = {}
 
-
     def ReadMUDL(MUDLInfo):
         MemberUDL.Count = len(MUDLInfo)
         MemberUDL.MemberID = dict(zip(MUDLInfo[:, 0], np.arange(MemberUDL.Count)))
@@ -455,7 +453,7 @@ class MemberUDL:
 
 
 class Analysis:
-    UseTransferLearning = ""
+    SelectNN = ""
     num_sample = 0.0
     num_epochs = 0.0
     TOL = 0.0
@@ -464,7 +462,7 @@ class Analysis:
 
     @classmethod
     def reset(cls):
-        cls.UseTransferLearning = ""
+        cls.SelectNN = ""
         cls.num_sample = 0.0
         cls.num_epochs = 0.0
         cls.TOL = 0.0
@@ -473,9 +471,8 @@ class Analysis:
 
     # Read Analysis Information
     def ReadAna(tAanalInfo):
-        # print("tAanalInfo = ", tAanalInfo)
         AnalInfo =dict(zip(tAanalInfo[:, 0], tAanalInfo[:, 1]))
-        Analysis.UseTransferLearning = AnalInfo.get('UseTransferLearning', "Y")
+        Analysis.SelectNN = AnalInfo.get('SelectNN', "BaseModel")
         Analysis.num_sample = float(AnalInfo.get('num_sample', 10))
         Analysis.num_epochs = int(AnalInfo.get('num_epochs', 999))
         Analysis.TOL = float(AnalInfo.get('TOL', 0.001))
