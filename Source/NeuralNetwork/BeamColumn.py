@@ -1,11 +1,10 @@
-import timeit
 import os
 import torch
 import torch.nn as nn
 from tqdm import tqdm
-from Source.ConstSectBeamCol.File.IO import load_model
-from Source.ConstSectBeamCol.Variables import Model
-from Source.ConstSectBeamCol.Training.Train import train_model
+from Source.File.IO import load_model
+from Source.Variables import Model
+from Source.Training.Train import train_model
 import matplotlib
 
 

@@ -1,7 +1,7 @@
 import torch
 import numpy as np
 from matplotlib import pyplot as plt
-from Source.ConstSectBeamCol.Utils.MathTools import gradients, Integration1D
+from Source.Utils.MathTools import gradients, Integration1D
 
 
 def start_train():

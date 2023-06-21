@@ -11,7 +11,7 @@ import json
 
 # =========================================================================================
 # Import internal functions
-from Source.ConstSectBeamCol.Variables import Model
+from Source.Variables import Model
 
 
 def Getfilename():

@@ -1,12 +1,12 @@
 import torch
 import numpy as np
-from Source.ConstSectBeamCol.LossFunction.ForceEquilibrium import force_eq
-from Source.ConstSectBeamCol.LossFunction.BoundaryConditions import ux_i, ux_j, uy_j, rz_i, rz_j
-from Source.ConstSectBeamCol.Utils import AdaoptiveLossWeight
-from Source.ConstSectBeamCol.File.IO import save_model
-from Source.ConstSectBeamCol.Visualization.BeamColumn import start_train, process, end_train
-from Source.ConstSectBeamCol.Variables import Model
-from Source.ConstSectBeamCol.Utils.MathTools import Integration1D, gradients
+from Source.LossFunction.ForceEquilibrium import force_eq
+from Source.LossFunction.BoundaryConditions import ux_i, ux_j, uy_j, rz_i, rz_j
+from Source.Utils import AdaoptiveLossWeight
+from Source.File.IO import save_model
+from Source.Visualization.BeamColumn import start_train, process, end_train
+from Source.Variables import Model
+from Source.Utils.MathTools import Integration1D, gradients
 
 
 def train_model(model, model_path, model_name, load_factor, num_sample=100, TOL=1E-12, loss=torch.nn.MSELoss, opt=None,

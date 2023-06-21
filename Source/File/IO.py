@@ -1,7 +1,7 @@
 import os
 import torch
 import json
-from Source.ConstSectBeamCol.NeuralNetwork.BaseModel import BaseNetwork
+from Source.NeuralNetwork.BaseModel import BaseNetwork
 
 
 act_fn_by_name = {

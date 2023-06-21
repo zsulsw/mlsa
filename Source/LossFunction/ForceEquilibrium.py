@@ -1,6 +1,6 @@
 import torch
 import numpy as np
-from Source.ConstSectBeamCol.Utils.MathTools import gradients
+from Source.Utils.MathTools import gradients
 
 
 def force_eq(s, Delta, Theta, loss, E, A, I, L, P1, Fy1, Vyq, LF, Impf):

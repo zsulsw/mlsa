@@ -3,7 +3,7 @@
   [
     [ "Version", "3.0.0" ],
     [ "Date", "20220331" ],
-    [ "Description", "This example is the Example 4 of PINN-Beam-Column paper"]
+    [ "Description", "This example is the Example 3 of PINN-Beam-Column paper"]
   ],
   "MATERIAL": [
     [ 1, 205000000, 80770000, 0 , 0 ]
@@ -20,19 +20,19 @@
   ],
   "BOUNDARY": [
     [ 1, 1, 1, 1, 1, 1, 1 ],
-    [ 2, 0, 1, 1, 1, 0, 0 ]
+    [ 2, 0, 0, 0, 0, 0, 0 ]
   ],
   "JOINTLOAD": [
-    [ 2, 1200, 0, 0, 0, 0, 120, 0, 0 ]
+    [ 2, 0, 0, 0, 0, 0, 0, 0, 0 ]
   ],
   "MEMBERUDL": [
-    [ 1, 0, 0, 0, 0, 0, 0 ]
+    [ 1, 0, 40, 0, 0, 160, 0 ]
   ],
   "ANALYSIS": [
-    [ "UseTransferLearning", "Y" ],
+    [ "SelectNN", "ConstSectBeamCol" ],
     [ "num_sample", 100 ],
     [ "num_epochs", 50000 ],
-    [ "TOL", 1E-3 ],
+    [ "TOL", 1E-4 ],
     [ "target_LF", 1 ],
     [ "load_step", 10 ]
   ]

@@ -1,5 +1,5 @@
 import torch
-from Source.ConstSectBeamCol.Utils.MathTools import gradients
+from Source.Utils.MathTools import gradients
 
 
 def ux_i(Delta, loss, bc, device):
