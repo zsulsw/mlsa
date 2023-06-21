@@ -472,7 +472,7 @@ class Analysis:
     # Read Analysis Information
     def ReadAna(tAanalInfo):
         AnalInfo =dict(zip(tAanalInfo[:, 0], tAanalInfo[:, 1]))
-        Analysis.SelectNN = AnalInfo.get('SelectNN', "BaseModel")
+        Analysis.SelectNN = AnalInfo.get('SelectNN', "ConstSectBeamCol")
         Analysis.num_sample = float(AnalInfo.get('num_sample', 10))
         Analysis.num_epochs = int(AnalInfo.get('num_epochs', 999))
         Analysis.TOL = float(AnalInfo.get('TOL', 0.001))
