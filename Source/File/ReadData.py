@@ -63,10 +63,6 @@ def LoadDataToModel(DataIn):
     Model.Section.ReadSect(np.array(DataIn["SECTION"]))
     Model.Boundary.ReadBoun(np.array(DataIn["BOUNDARY"]))
     Model.MemberUDL.ReadMUDL(np.array(DataIn["MEMBERUDL"]))
-    try:
-        Model.Coupling.ReadCoupl(DataIn["COUPLING"])
-    except:
-        pass
     Model.JointLoad.ReadJNTL(np.array(DataIn["JOINTLOAD"]))
     Model.Analysis.ReadAna(np.array(DataIn["ANALYSIS"]))
     return

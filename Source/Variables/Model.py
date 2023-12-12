@@ -39,20 +39,7 @@ class Node:
     X = {}
     Y = {}
     Z = {}
-    thX = {}
-    thY = {}
-    thZ = {}
-    thB = {}
-    X0 = {}
-    Y0 = {}
-    Z0 = {}
-    thX0 = {}
-    thY0 = {}
-    thZ0 = {}
-    thB0 = {}
-    Fg = {}
-    CurU = {}
-    CurF = {}
+
 
     @classmethod
     def reset(cls):
@@ -61,20 +48,7 @@ class Node:
         cls.X = {}
         cls.Y = {}
         cls.Z = {}
-        cls.thX = {}
-        cls.thY = {}
-        cls.thZ = {}
-        cls.thB = {}
-        cls.X0 = {}
-        cls.Y0 = {}
-        cls.Z0 = {}
-        cls.thX0 = {}
-        cls.thY0 = {}
-        cls.thZ0 = {}
-        cls.thB0 = {}
-        cls.Fg = {}
-        cls.CurU = {}
-        cls.CurF = {}
+
 
     def __init__(self):
         self.Count = 0
@@ -82,20 +56,7 @@ class Node:
         self.X = {}
         self.Y = {}
         self.Z = {}
-        self.thX = {}
-        self.thY = {}
-        self.thZ = {}
-        self.thB = {}
-        self.X0 = {}
-        self.Y0 = {}
-        self.Z0 = {}
-        self.thX0 = {}
-        self.thY0 = {}
-        self.thZ0 = {}
-        self.thB0 = {}
-        self.Fg = {}
-        self.CurU = {}
-        self.CurF = {}
+
 
     def ReadNode(self, NodeInfo) -> object:
         self.Count = len(NodeInfo)
@@ -103,20 +64,6 @@ class Node:
         self.X = dict(zip(NodeInfo[:, 0], NodeInfo[:, 1]))
         self.Y = dict(zip(NodeInfo[:, 0], NodeInfo[:, 2]))
         self.Z = dict(zip(NodeInfo[:, 0], NodeInfo[:, 3]))
-        self.thX = dict(zip(NodeInfo[:, 0], np.zeros(Node.Count)))
-        self.thY = dict(zip(NodeInfo[:, 0], np.zeros(Node.Count)))
-        self.thZ = dict(zip(NodeInfo[:, 0], np.zeros(Node.Count)))
-        self.thB = dict(zip(NodeInfo[:, 0], np.zeros(Node.Count)))
-        self.X0 = dict(zip(NodeInfo[:, 0], NodeInfo[:, 1]))
-        self.Y0 = dict(zip(NodeInfo[:, 0], NodeInfo[:, 2]))
-        self.Z0 = dict(zip(NodeInfo[:, 0], NodeInfo[:, 3]))
-        self.thX0 = dict(zip(NodeInfo[:, 0], np.zeros(Node.Count)))
-        self.thY0 = dict(zip(NodeInfo[:, 0], np.zeros(Node.Count)))
-        self.thZ0 = dict(zip(NodeInfo[:, 0], np.zeros(Node.Count)))
-        self.thB0 = dict(zip(NodeInfo[:, 0], np.zeros(Node.Count)))
-        self.Fg = np.zeros(Node.Count * 7)
-        self.CurU = np.zeros(Node.Count * 7)
-        self.CurF = np.zeros(Node.Count * 7)
         return
 
 
@@ -145,53 +92,17 @@ class Member:
         #
         Member.L = np.zeros(tMemCount)
         # Member.L0 = np.zeros(tMemCount)
-        Member.x1 = np.zeros(tMemCount)
-        Member.y1 = np.zeros(tMemCount)
-        Member.z1 = np.zeros(tMemCount)
-        Member.Fx1 = np.zeros(tMemCount)
-        Member.Fy1 = np.zeros(tMemCount)
-        Member.Fz1 = np.zeros(tMemCount)
-        Member.Mx1 = np.zeros(tMemCount)
-        Member.My1 = np.zeros(tMemCount)
-        Member.Mz1 = np.zeros(tMemCount)
-        Member.Mb1 = np.zeros(tMemCount)
-        Member.thx1 = np.zeros(tMemCount)
-        Member.thy1 = np.zeros(tMemCount)
-        Member.thz1 = np.zeros(tMemCount)
-        Member.thb1 = np.zeros(tMemCount)
-        Member.x2 = np.zeros(tMemCount)
-        Member.y2 = np.zeros(tMemCount)
-        Member.z2 = np.zeros(tMemCount)
-        Member.Fx2 = np.zeros(tMemCount)
-        Member.Fy2 = np.zeros(tMemCount)
-        Member.Fz2 = np.zeros(tMemCount)
-        Member.Mx2 = np.zeros(tMemCount)
-        Member.My2 = np.zeros(tMemCount)
-        Member.Mz2 = np.zeros(tMemCount)
-        Member.Mb2 = np.zeros(tMemCount)
-        Member.thx2 = np.zeros(tMemCount)
-        Member.thy2 = np.zeros(tMemCount)
-        Member.thz2 = np.zeros(tMemCount)
-        Member.thb2 = np.zeros(tMemCount)
-        Member.delthx1 = np.zeros(tMemCount)
-        Member.delthy1 = np.zeros(tMemCount)
-        Member.delthz1 = np.zeros(tMemCount)
-        Member.delthx2 = np.zeros(tMemCount)
-        Member.delthy2 = np.zeros(tMemCount)
-        Member.delthz2 = np.zeros(tMemCount)
-        Member.EleMtxL = np.zeros((Member.Count * 3, 3))
-        Member.EleMtxL0 = np.zeros((Member.Count * 3, 3))
-        Member.EleMtxK = np.zeros((Member.Count * 14, 14))
+
         # Initialize member length
         for ii in Member.ID:
             tI = Member.I[ii]
             tJ = Member.J[ii]
-            X1 = Node.X0[tI]
-            Y1 = Node.Y0[tI]
-            Z1 = Node.Z0[tI]
-            X2 = Node.X0[tJ]
-            Y2 = Node.Y0[tJ]
-            Z2 = Node.Z0[tJ]
+            X1 = Node.X[tI]
+            Y1 = Node.Y[tI]
+            Z1 = Node.Z[tI]
+            X2 = Node.X[tJ]
+            Y2 = Node.Y[tJ]
+            Z2 = Node.Z[tJ]
             Member.L0[ii] = np.sqrt((X2 - X1) ** 2 + (Y2 - Y1) ** 2 + (Z2 - Z1) ** 2)
 
     def ReadMember(MembInfo):
@@ -324,64 +235,6 @@ class Boundary:
         Boundary.RZ = dict(zip(BounInfo[:, 0], BounInfo[:, 6]))
         return
 
-
-class Coupling:
-    Count = 0
-    ID = {}
-    Master = {}
-    Slave = {}
-    UX = {}
-    UY = {}
-    UZ = {}
-    RX = {}
-    RY = {}
-    RZ = {}
-
-    @classmethod
-    def reset(cls):
-        cls.Count = 0
-        cls.ID = {}
-        cls.Master = {}
-        cls.Slave = {}
-        cls.UX = {}
-        cls.UY = {}
-        cls.UZ = {}
-        cls.RX = {}
-        cls.RY = {}
-        cls.RZ = {}
-
-    def ReadCoupl(CouplInfo):
-        tMaster = []
-        tSlave = []
-        tUX = []
-        tUY = []
-        tUZ = []
-        tRX = []
-        tRY = []
-        tRZ = []
-        for ii in CouplInfo:
-            for jj in ii[1:]:
-                tMaster.append(ii[0])
-                tSlave.append(jj[0])
-                tUX.append(jj[1])
-                tUY.append(jj[2])
-                tUZ.append(jj[3])
-                tRX.append(jj[4])
-                tRY.append(jj[5])
-                tRZ.append(jj[6])
-        Coupling.Count = len(tMaster)
-        Coupling.ID = dict(enumerate(range(Coupling.Count)))
-        Coupling.Master = dict(enumerate(tMaster))
-        Coupling.Slave = dict(enumerate(tSlave))
-        Coupling.UX = dict(enumerate(tUX))
-        Coupling.UY = dict(enumerate(tUY))
-        Coupling.UZ = dict(enumerate(tUZ))
-        Coupling.RX = dict(enumerate(tRX))
-        Coupling.RY = dict(enumerate(tRY))
-        Coupling.RZ = dict(enumerate(tRZ))
-        return
-
-
 class JointLoad:
     Count = 0
     NodeID = []
@@ -501,7 +354,6 @@ def reset_all():
     Material.reset()
     Section.reset()
     Boundary.reset()
-    Coupling.reset()
     JointLoad.reset()
     MemberUDL.reset()
     Analysis.reset()
