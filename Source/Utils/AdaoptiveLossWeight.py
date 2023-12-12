@@ -1,5 +1,9 @@
+###########################################################################################
+# Machine Learning-based Second-order Analysis of Beam-columns through PINNs
+# Developed by Siwei Liu, Liang Chen and Haoyi Zhang
+# License: GPL-3.0
+###########################################################################################
 import torch
-
 
 def GetLOSS(LOSS_List, LossWeight):
     LOSS = LossWeight[0] * LOSS_List[0]
