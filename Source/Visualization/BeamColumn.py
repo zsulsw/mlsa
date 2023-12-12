@@ -1,3 +1,8 @@
+###########################################################################################
+# Machine Learning-based Second-order Analysis of Beam-columns through PINNs
+# Developed by Siwei Liu, Liang Chen and Haoyi Zhang
+# License: GPL-3.0
+###########################################################################################
 import torch
 import numpy as np
 from matplotlib import pyplot as plt
