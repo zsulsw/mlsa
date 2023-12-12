@@ -18,7 +18,7 @@ If you find our research and the provided source code useful, please consider ci
 
 ## Citation
 
-If the source codes are useful, please cite the paper [Click Here](http://dx.doi.org/10.18057/IJASC.2023.19.4.10).
+If the source codes are useful, please cite the paper. [Click Here](http://dx.doi.org/10.18057/IJASC.2023.19.4.10).
 ```bibtex
 @article{Chen-Liang-2023,
 author = {Liang Chen, Hao-Yi Zhang, Si-Wei Liu and Siu-Lai Chan},
