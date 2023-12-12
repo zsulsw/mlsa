@@ -16,6 +16,11 @@ If you find our research and the provided source code useful, please consider ci
 - torch~=1.13.0
 - tqdm~=4.65.0
 
+## How to Use
+
+- Open the Python script "Main.py" in the "Source" folder.
+- Select and input the file name of the example in the "Examples" folder.
+
 ## Citation
 
 If the source codes are useful, please cite the paper. [Click Here](http://dx.doi.org/10.18057/IJASC.2023.19.4.10).
