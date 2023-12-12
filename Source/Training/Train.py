@@ -1,3 +1,9 @@
+###########################################################################################
+# Machine Learning-based Second-order Analysis of Beam-columns through PINNs
+# Developed by Siwei Liu, Liang Chen and Haoyi Zhang
+# License: GPL-3.0
+###########################################################################################
+
 import torch
 import numpy as np
 from Source.LossFunction.ForceEquilibrium import force_eq
