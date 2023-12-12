@@ -1,6 +1,8 @@
-#############################################################################
-# MLSA - Machine Learning-based Structural Analysis
-#############################################################################
+###########################################################################################
+# Machine Learning-based Second-order Analysis of Beam-columns through PINNs
+# Developed by Siwei Liu, Liang Chen and Haoyi Zhang
+# License: GPL-3.0
+###########################################################################################
 # ===========================================================================
 # Import standard libraries
 import numpy as np
