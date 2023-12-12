@@ -1,9 +1,7 @@
 ###########################################################################################
-# ML - Python-based Cross-platforms Machine Learning Software
-#
-# Project Leaders :
-#   S.W. Liu        -   The Hong Kong Polytechnic University, Hong Kong, China
-#
+# Machine Learning-based Second-order Analysis of Beam-columns through PINNs
+# Developed by Siwei Liu, Liang Chen and Haoyi Zhang
+# License: GPL-3.0
 ###########################################################################################
 # Description:
 # =========================================================================================
@@ -18,11 +16,10 @@ from Source.File import ReadData
 from Source.NeuralNetwork import BeamColumn
 
 # =========================================================================================
-ProgrameName = " MLSA - Machine Learning-based Structural Analysis Module(v1.0.0) "
-DeveloperName = " Developed by MLSA Team "
+ProgrameName = " Machine Learning-based Second-order Analysis of Beam-columns through PINNs"
+DeveloperName = " Developed by Siwei Liu, Liang Chen and Haoyi Zhang"
 RevisedDate = " Last Revised: May. 21, 2023 "
 # =========================================================================================
-
 
 def Run(argv=''):
     # ----------------------------------------------------------------
@@ -49,7 +46,6 @@ def Run(argv=''):
     # ----------------------------------------------------------------
 
 # =========================================================================================
-
 
 if __name__ == '__main__':
     Run()
