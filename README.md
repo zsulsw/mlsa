@@ -1,4 +1,4 @@
-<p align="center"><img src="mlsa.png" width="500"\></p>
+
 
 # Machine Learning-based Second-order Analysis of Beam-columns through Physics-Informed Neural Networks
 The second-order analysis of slender steel members can be challenging, particularly when large deflections are involved. This research introduces a novel Machine Learning-based Structural Analysis (MLSA) method for the second-order analysis of beam-columns. This method presents a promising alternative to prevailing solutions that rely on oversimplified analytical equations or traditional finite-element-based methods.
