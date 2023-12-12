@@ -5,9 +5,16 @@ The second-order analysis of slender steel members can be challenging, particula
 
 The effectiveness of conventional machine learning methods heavily depends on the quality and quantity of the provided data. However, such data are often scarce and costly to obtain in structural engineering practices. To address this issue, we employ a new and explainable machine learning-based method called Physics-informed Neural Networks (PINN). This method uses physical information to guide the learning process, creating a self-supervised learning procedure. This approach makes it possible to train the neural network with few or even no predefined datasets, achieving an accurate approximation.
 
-This research extends the PINN method to the problems of second-order analysis of steel beam-columns. The source code for the PINN program used in this paper is available on this GitHub page. We encourage readers to explore the code to gain a deeper understanding of the implementation details.
+This research extends the PINN method to the problems of second-order analysis of slender beam-columns. The source code for the PINN program used in this paper is available on this GitHub page. We encourage readers to explore the code to gain a deeper understanding of the implementation details.
 
 If you find our research and the provided source code useful, please consider citing our paper in your work.
+
+
+## Developed by:
+
+- [**Siwei Liu**](https://www.polyu.edu.hk/cee/people/academic-staff/dr-siwei-liu/) - Assistant Professor, The Hong Kong Polytechnic University. [**si-wei.liu@polyu.edu.hk**](mailto:si-wei.liu@polyu.edu.hk).
+- **Liang Chen** - Postdoctoral Fellow, The Hong Kong Polytechnic University. [**liang17.chen@connect.polyu.hk**](mailto:liang17.chen@connect.polyu.hk).
+- **Haoyi Zhang** - PhD Student, The Hong Kong Polytechnic University. [**haoyi.zhang@connect.polyu.hk**](mailto:haoyi.zhang@connect.polyu.hk).
 
 ## Requirements
 
