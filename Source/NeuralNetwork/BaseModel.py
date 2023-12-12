@@ -1,5 +1,10 @@
-import torch.nn as nn
+###########################################################################################
+# Machine Learning-based Second-order Analysis of Beam-columns through PINNs
+# Developed by Siwei Liu, Liang Chen and Haoyi Zhang
+# License: GPL-3.0
+###########################################################################################
 
+import torch.nn as nn
 
 class BaseNetwork(nn.Module):
     def __init__(self, act_fn, input_size=3, output_size=2, hidden_sizes=(32, 32, 32)):
