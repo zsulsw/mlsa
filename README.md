@@ -31,7 +31,7 @@ git clone https://github.com/zsulsw/mlsa.git
 ```
 - Run the "Main.py" file located in the "Source" folder.
 - Input the filename of the example from the "Examples" folder. You will see a list of file names showing the data files in the "Examples" folder. Please ensure that the data file is in JSON format and has been placed into the "Examples" folder.
-- For further information, please check the publication below.
+- For further information, please check this [publication](http://dx.doi.org/10.18057/IJASC.2023.19.4.10).
 
 ## Citation
 
