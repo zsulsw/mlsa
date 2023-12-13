@@ -19,24 +19,17 @@ If you find our research and the provided source code useful, please consider ci
 ## Requirements
 
 All codes were developed and tested on a Windows 11 machine with Python 3.8. The following packages are required to run the codes:
-- numpy: 1.24.2 (For numerical computation)
+- numpy: (For numerical computation)
+- torch: (For neural network)
+- matplotlib: (For plotting)
+- tqdm: (For progress bar)
+
+Please install the required packages via:
 ```bash
-pip install numpy==1.24.2
-```
-- torch: 1.13.0 (For neural network)
-```bash
-pip install torch==1.13.0
-```
-- matplotlib: 3.7.0 (For plotting)
-```bash
-pip install matplotlib==3.7.0
-```
-- tqdm: 4.65.0 (For progress bar)
-```bash
-pip install tqdm==4.65.0
+pip install -r requirements.txt
 ```
 
-For compatibility, we recommend using the same versions of the packages as listed above.
+The package versions with guaranteed compatibility are listed in the "requirements.txt", which are recommended for usage.
 
 ## How to Use
 
