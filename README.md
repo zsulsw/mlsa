@@ -25,8 +25,8 @@ If you find our research and the provided source code useful, please consider ci
 
 ## How to Use
 
-- Open the Python script "Main.py" in the "Source" folder.
-- Select and input the file name of the example in the "Examples" folder.
+- Run the "Main.py" file located in the "Source" folder.
+- Input the filename of the example from the "Examples" folder. You will see a list of file names showing the data files in the "Examples" folder. Please ensure that the data file is in JSON format and has been placed into the "Examples" folder.
 
 ## Citation
 
