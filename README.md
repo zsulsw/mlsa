@@ -25,8 +25,13 @@ If you find our research and the provided source code useful, please consider ci
 
 ## How to Use
 
+- To run the examples in this study, please first clone the repository via:
+```bash
+git clone https://github.com/zsulsw/mlsa.git
+```
 - Run the "Main.py" file located in the "Source" folder.
 - Input the filename of the example from the "Examples" folder. You will see a list of file names showing the data files in the "Examples" folder. Please ensure that the data file is in JSON format and has been placed into the "Examples" folder.
+- For further information, please check the publication below.
 
 ## Citation
 
