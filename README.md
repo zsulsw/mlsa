@@ -29,7 +29,7 @@ Please install the required packages via:
 pip install -r requirements.txt
 ```
 
-The package versions with guaranteed compatibility are listed in the "requirements.txt", which are recommended for usage.
+Package compatibility has been checked with versions specified in "requirements.txt".
 
 ## How to Use
 
