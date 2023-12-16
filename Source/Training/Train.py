@@ -60,18 +60,18 @@ def train_model(model, model_path, model_name, load_factor, num_sample=100, TOL=
         # Optimize the model parameters
         opt.zero_grad()
         LossFuncSum = [L1, L2, L3, L4, L5, L6, L7]
-        LOSS, LOSS_value = AdaoptiveLossWeight.GetLOSS(LossFuncSum, LossWeight)
-        if LOSS_value < TOL:
-            process(fig, s, Delta, Theta, E, A, I, L, P, V, P1, Fy1, M1, Vyq, load_factor, Impf)
-        if epoch % 1000 == 0 or (epoch % 500 == 0 and epoch <= 1000):
+        if epoch % 1000 == 0 or (epoch % 100 == 0 and epoch <= 1000):
             process(fig, s, Delta, Theta, E, A, I, L, P, V, P1, Fy1, M1, Vyq, load_factor, Impf)
         if epoch % 20 == 0 and epoch > 10:
+            LossWeight = AdaoptiveLossWeight.UpdateLossWeight(model, LossFuncSum, LossWeight)
+            LOSS, LOSS_value = AdaoptiveLossWeight.GetLOSS(LossFuncSum, LossWeight)
             print("LossWeight:", LossWeight)
             print([L1.item(), L2.item(), L3.item(), L4.item(), L5.item(), L6.item(), L7.item()])
             opt.zero_grad()
             LOSS.backward()
             opt.step()
         else:
+            LOSS, LOSS_value = AdaoptiveLossWeight.GetLOSS(LossFuncSum, LossWeight)
             LOSS.backward()
             opt.step()
         if epoch % 100 == 0 and epoch != 0 and LOSS_value <= MinLoss:
