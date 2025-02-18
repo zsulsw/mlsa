@@ -9,8 +9,8 @@ import numpy as np
 from Source.LossFunction.ForceEquilibrium import force_eq
 from Source.LossFunction.BoundaryConditions import ux_i, ux_j, uy_j, rz_i, rz_j
 from Source.Utils import AdaoptiveLossWeight
-from Source.File.IO import save_model
-from Source.Visualization.BeamColumn import start_train, process, end_train
+from Source.File.IO import save_model, save_shape_res, save_load_deform_res
+from Source.Visualization.BeamColumn import start_train, process, end_train, get_res
 from Source.Variables import Model
 from Source.Utils.MathTools import Integration1D, gradients
 
@@ -61,7 +61,8 @@ def train_model(model, model_path, model_name, load_factor, num_sample=100, TOL=
         opt.zero_grad()
         LossFuncSum = [L1, L2, L3, L4, L5, L6, L7]
         if epoch % 1000 == 0 or (epoch % 100 == 0 and epoch <= 1000):
-            process(fig, s, Delta, Theta, E, A, I, L, P, V, P1, Fy1, M1, Vyq, load_factor, Impf)
+            x_res, y_res, defm_res = get_res(s, Delta, Theta, L, Impf)
+            process(fig, s, x_res, y_res, Delta, Theta, E, A, I, L, P, V, P1, Fy1, M1, Vyq, load_factor, Impf)
         if epoch % 20 == 0 and epoch > 10:
             LossWeight = AdaoptiveLossWeight.UpdateLossWeight(model, LossFuncSum, LossWeight)
             LOSS, LOSS_value = AdaoptiveLossWeight.GetLOSS(LossFuncSum, LossWeight)
@@ -77,9 +78,13 @@ def train_model(model, model_path, model_name, load_factor, num_sample=100, TOL=
         if epoch % 100 == 0 and epoch != 0 and LOSS_value <= MinLoss:
             save_model(model, model_path, model_name)
         if LOSS_value < TOL:
+            save_shape_res(x_res, y_res, model_path, model_name, load_factor)
+            save_load_deform_res(load_factor, defm_res, model_path, model_name)
             break
         pbar.set_description("Loss %s" % LOSS.item())
     end_train(fig)
     print("Current loss value:", LOSS.item())
     save_model(model, model_path, model_name)
     model.eval()
+
+

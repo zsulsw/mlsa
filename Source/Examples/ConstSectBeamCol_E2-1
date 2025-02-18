@@ -16,7 +16,7 @@
     [ 2, 10.0, 0, 0 ]
   ],
   "MEMBER": [
-    [ 1, 1, 1, 2, 0, 0.0006667 ]
+    [ 1, 1, 1, 2, 0, 0.006667 ]
   ],
   "BOUNDARY": [
     [ 1, 1, 1, 1, 1, 0, 0 ],
@@ -32,7 +32,7 @@
     [ "SelectNN", "ConstSectBeamCol" ],
     [ "num_sample", 100 ],
     [ "num_epochs", 50000 ],
-    [ "TOL", 1E-5 ],
+    [ "TOL", 1E-4 ],
     [ "target_LF", 1 ],
     [ "load_step", 10 ]
   ]

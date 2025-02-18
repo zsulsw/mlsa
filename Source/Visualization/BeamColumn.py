@@ -19,22 +19,32 @@ def start_train():
     plt.rc('legend', fontsize=8)  # legend fontsize
     plt.rc('figure', titlesize=8)  # fontsize of the figure title
     plt.rcParams["font.family"] = "Times New Roman"
-    fig = plt.figure(figsize=(8, 10))
+    fig = plt.figure(1, figsize=(8, 10))
     return fig
 
 
-def process(fig, s, Delta, Theta, E, A, I, L, P, V, P1, Fy1, M1, Vyq, LF, Impf):
+def get_res(s, Delta, Theta, L, Impf):
+    x = torch.zeros_like(s)
+    y = torch.zeros_like(s)
+    defm_res = torch.zeros_like(s)
+    for i in range(len(s)):
+        x[i] = Integration1D(L * torch.cos(Theta + np.pi * Impf * torch.cos(np.pi * s)) - torch.cos(
+            Theta + np.pi * Impf * torch.cos(np.pi * s)) * gradients(Delta, s, 1), s, 0, s[i])
+        y[i] = Integration1D(L * torch.sin(Theta + np.pi * Impf * torch.cos(np.pi * s)) - torch.sin(
+            Theta + np.pi * Impf * torch.cos(np.pi * s)) * gradients(Delta, s, 1), s, 0, s[i])
+        defm_res[i] = abs(y[i]) - abs(Integration1D(L * torch.sin(np.pi * Impf * torch.cos(np.pi * s)), s, 0, s[i]))
+    x = x.cpu()
+    y = y.cpu()
+    defm_res = defm_res.cpu()
+    return x, y, defm_res
+
+def process(fig, s, x, y, Delta, Theta, E, A, I, L, P, V, P1, Fy1, M1, Vyq, LF, Impf):
     plt.figure(fig.number)
     plt.clf()
     DDeltaDs = gradients(Delta, s, 1)
     DThetaDs = gradients(Theta, s, 1)
     D2ThetaDs2 = gradients(Theta, s, 2)
-    x = torch.zeros_like(s)
-    y = torch.zeros_like(s)
     Mq = torch.zeros_like(s)
-    for i in range(len(s)):
-        x[i] = Integration1D(L * torch.cos(Theta + np.pi * Impf * torch.cos(np.pi * s)) - torch.cos(Theta + np.pi * Impf * torch.cos(np.pi * s)) * gradients(Delta, s, 1), s, 0, s[i])
-        y[i] = Integration1D(L * torch.sin(Theta + np.pi * Impf * torch.cos(np.pi * s)) - torch.sin(Theta + np.pi * Impf * torch.cos(np.pi * s)) * gradients(Delta, s, 1), s, 0, s[i])
     for i in range(len(s)):
         Mq[i] = Integration1D(-Vyq, x, 0, x[-1]) - Integration1D(-Vyq, x, 0, x[i])
     M = Mq - (LF * P1 * y - Fy1 * (x[-1] - x)) + LF * M1

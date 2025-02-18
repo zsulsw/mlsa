@@ -12,7 +12,6 @@ import numpy as np
 def initialize():
     # Member Geometry
     Member.Initialize(Member.Count)
-    return
 
 
 class Information:
@@ -30,7 +29,6 @@ class Information:
         Information.Version = ModelGenlInfo[0, 1]
         Information.EDate = ModelGenlInfo[1, 1]
         Information.Description = ModelGenlInfo[2, 1]
-        return
 
 
 class Node:
@@ -64,7 +62,6 @@ class Node:
         self.X = dict(zip(NodeInfo[:, 0], NodeInfo[:, 1]))
         self.Y = dict(zip(NodeInfo[:, 0], NodeInfo[:, 2]))
         self.Z = dict(zip(NodeInfo[:, 0], NodeInfo[:, 3]))
-        return
 
 
 class Member:
@@ -115,7 +112,6 @@ class Member:
         Member.Imperfection = dict(zip(MembInfo[:, 0], MembInfo[:, 5]))
         Member.L0 = dict(zip(MembInfo[:, 0], np.zeros(Member.Count)))
         Member.Initialize(Member.Count)
-        return
 
 
 class Material:
@@ -142,7 +138,6 @@ class Material:
         Material.G = dict(zip(MatInfo[:, 0], MatInfo[:, 2]))
         Material.Fy = dict(zip(MatInfo[:, 0], MatInfo[:, 3]))
         Material.Dens = dict(zip(MatInfo[:, 0], MatInfo[:, 4]))
-        return
 
 
 class Section:
@@ -200,7 +195,6 @@ class Section:
         Section.betay = dict(zip(SectInfo[:, 0], SectInfo[:, 12]))
         Section.betaz = dict(zip(SectInfo[:, 0], SectInfo[:, 13]))
         Section.betaw = dict(zip(SectInfo[:, 0], SectInfo[:, 14]))
-        return
 
 
 class Boundary:
@@ -233,7 +227,7 @@ class Boundary:
         Boundary.RX = dict(zip(BounInfo[:, 0], BounInfo[:, 4]))
         Boundary.RY = dict(zip(BounInfo[:, 0], BounInfo[:, 5]))
         Boundary.RZ = dict(zip(BounInfo[:, 0], BounInfo[:, 6]))
-        return
+
 
 class JointLoad:
     Count = 0
@@ -271,7 +265,6 @@ class JointLoad:
         JointLoad.MZ = dict(zip(JNTLInfo[:, 0], JNTLInfo[:, 6]))
         JointLoad.Yp = dict(zip(JNTLInfo[:, 0], JNTLInfo[:, 7]))
         JointLoad.Zp = dict(zip(JNTLInfo[:, 0], JNTLInfo[:, 8]))
-        return
 
 
 class MemberUDL:
@@ -304,7 +297,6 @@ class MemberUDL:
         MemberUDL.QX2 = dict(zip(MUDLInfo[:, 0], MUDLInfo[:, 4]))
         MemberUDL.QY2 = dict(zip(MUDLInfo[:, 0], MUDLInfo[:, 5]))
         MemberUDL.QZ2 = dict(zip(MUDLInfo[:, 0], MUDLInfo[:, 6]))
-        return
 
 
 class Analysis:
@@ -313,7 +305,7 @@ class Analysis:
     num_epochs = 0.0
     TOL = 0.0
     target_LF = 0.0
-    load_step = 0.0
+    load_step = 0
 
     @classmethod
     def reset(cls):
@@ -322,7 +314,7 @@ class Analysis:
         cls.num_epochs = 0.0
         cls.TOL = 0.0
         cls.target_LF = 0.0
-        cls.load_step = 0.0
+        cls.load_step = 0
 
     # Read Analysis Information
     def ReadAna(tAanalInfo):
@@ -332,7 +324,7 @@ class Analysis:
         Analysis.num_epochs = int(AnalInfo.get('num_epochs', 999))
         Analysis.TOL = float(AnalInfo.get('TOL', 0.001))
         Analysis.target_LF = int(AnalInfo.get('target_LF', 1))
-        Analysis.load_step = float(AnalInfo.get('load_step', 10))
+        Analysis.load_step = int(AnalInfo.get('load_step', 10))
 
 
 class OutResult:

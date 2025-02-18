@@ -32,7 +32,7 @@
     [ "SelectNN", "ConstSectBeamCol" ],
     [ "num_sample", 100 ],
     [ "num_epochs", 50000 ],
-    [ "TOL", 3E-4 ],
+    [ "TOL", 1E-4 ],
     [ "target_LF", 1 ],
     [ "load_step", 10 ]
   ]
